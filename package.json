@@ -1,0 +1,24 @@
+{
+    "name": "forum-backend",
+    "version": "1.0.0",
+    "main": "dist/app.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/app.js",
+        "dev": "tsc && node dist/app.js"
+    },
+    "type": "module",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "@types/node": "^25.0.9",
+        "prisma": "^6.19.2",
+        "typescript": "^5.9.3"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.19.2",
+        "dotenv": "^17.2.3"
+    }
+}
