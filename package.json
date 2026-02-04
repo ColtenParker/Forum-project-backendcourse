@@ -5,7 +5,8 @@
     "scripts": {
         "build": "tsc",
         "start": "node dist/app.js",
-        "dev": "tsc && node dist/app.js"
+        "test": "tsc && nodemon dist/app.js",
+        "dev": "nodemon --ext ts,js,json --exec node --no-warnings --loader ts-node/esm src/app.ts"
     },
     "type": "module",
     "keywords": [],
@@ -15,14 +16,14 @@
     "devDependencies": {
         "@types/express": "^5.0.6",
         "@types/node": "^25.0.9",
-        "@types/pug": "^2.0.10",
+        "nodemon": "^3.1.11",
         "prisma": "^6.19.2",
+        "ts-node": "^10.9.2",
         "typescript": "^5.9.3"
     },
     "dependencies": {
         "@prisma/client": "^6.19.2",
         "dotenv": "^17.2.3",
-        "express": "^5.2.1",
-        "pug": "^3.0.3"
+        "express": "^5.2.1"
     }
 }
