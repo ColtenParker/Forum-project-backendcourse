@@ -1,29 +1,26 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, {
+    NextFunction,
+    Request,
+    RequestHandler,
+    Response,
+} from 'express';
 import prisma from '../prisma.js';
 
-
-
-
-const getMany = async (req: Request, res: Response) => {
+export const getUsers = async (req: Request, res: Response) => {
     const users = await prisma.user.findMany();
     res.json({ users });
 };
 
-const create = async (req: Request, res: Response) => {
-    const user = await prisma.user.create({
-        data: {
-            email: req.body.email, username: req.body.username
-        }
-    });
-    res.status(201).json({ user });
-}
+export const createUser = async (req: Request, res: Response) => {
+    res.json({ message: 'hit' });
+};
 
-const get = async (req: Request, res: Response) => {
+export const getUser = async (req: Request, res: Response) => {
     const id = Number.parseInt(req.params.id as string);
     const user = await prisma.user.findFirst({
         where: { id: id },
         include: {
-            posts: true
+            posts: true,
         },
     });
 
@@ -35,4 +32,22 @@ const get = async (req: Request, res: Response) => {
     res.json({ user });
 };
 
-export default { get, getMany, create };
+export const updateUser: RequestHandler = (req, res) => {
+    res.json({ message: 'hit' });
+};
+
+export const deleteUser: RequestHandler = (req, res) => {
+    res.json({ message: 'hit' });
+};
+
+export const getUserPosts: RequestHandler = (req, res) => {
+    res.json({ message: 'hit' });
+};
+
+export const getUserLikedPosts: RequestHandler = (req, res) => {
+    res.json({ message: 'hit' });
+};
+
+export const getUserFollowedPosts: RequestHandler = (req, res) => {
+    res.json({ message: 'hit' });
+};
