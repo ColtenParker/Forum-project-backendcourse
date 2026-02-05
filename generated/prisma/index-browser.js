@@ -124,7 +124,10 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  username: 'username'
+  username: 'username',
+  name: 'name',
+  verified: 'verified',
+  notificationSettings: 'notificationSettings'
 };
 
 exports.Prisma.PostScalarFieldEnum = {
@@ -137,6 +140,22 @@ exports.Prisma.PostScalarFieldEnum = {
   published: 'published'
 };
 
+exports.Prisma.TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.ReplyScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  postId: 'postId',
+  published: 'published'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -146,11 +165,17 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-
+exports.NotificationSettings = exports.$Enums.NotificationSettings = {
+  SECURITY: 'SECURITY',
+  MARKETING: 'MARKETING',
+  POSTS: 'POSTS'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Post: 'Post'
+  Post: 'Post',
+  Tag: 'Tag',
+  Reply: 'Reply'
 };
 
 /**

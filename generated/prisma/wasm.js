@@ -96,7 +96,10 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  username: 'username'
+  username: 'username',
+  name: 'name',
+  verified: 'verified',
+  notificationSettings: 'notificationSettings'
 };
 
 exports.Prisma.PostScalarFieldEnum = {
@@ -109,6 +112,22 @@ exports.Prisma.PostScalarFieldEnum = {
   published: 'published'
 };
 
+exports.Prisma.TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.ReplyScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  postId: 'postId',
+  published: 'published'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -118,11 +137,17 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-
+exports.NotificationSettings = exports.$Enums.NotificationSettings = {
+  SECURITY: 'SECURITY',
+  MARKETING: 'MARKETING',
+  POSTS: 'POSTS'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Post: 'Post'
+  Post: 'Post',
+  Tag: 'Tag',
+  Reply: 'Reply'
 };
 /**
  * Create the Client
@@ -153,7 +178,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
@@ -172,13 +197,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int    @id @default(autoincrement())\n  email    String @unique\n  username String @unique\n\n  posts Post[]\n}\n\nmodel Post {\n  id        Int      @id @default(autoincrement())\n  title     String\n  body      String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  userId    Int\n  published Boolean  @default(false)\n\n  author User @relation(fields: [userId], references: [id])\n}\n",
-  "inlineSchemaHash": "963e2e123a11639798c4cf82bf95ec601e8573edc2d8151f1a0bc58ca3ab4098",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  email    String  @unique\n  username String  @unique\n  name     String\n  verified Boolean @default(false)\n\n  notificationSettings NotificationSettings[]\n  posts                Post[]\n  likedPosts           Post[]                 @relation(\"PostLikes\")\n  followedPosts        Post[]                 @relation(\"PostFollows\")\n  replies              Reply[]\n}\n\nenum NotificationSettings {\n  SECURITY\n  MARKETING\n  POSTS\n}\n\nmodel Post {\n  id        Int      @id @default(autoincrement())\n  title     String\n  body      String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  userId    Int\n  published Boolean  @default(false)\n\n  likes   User[]  @relation(\"PostLikes\")\n  follows User[]  @relation(\"PostFollows\")\n  author  User    @relation(fields: [userId], references: [id])\n  replies Reply[]\n  tags    Tag[]\n}\n\nmodel Tag {\n  id   Int    @id @default(autoincrement())\n  name String @unique\n  post Post[]\n}\n\nmodel Reply {\n  id        Int      @id @default(autoincrement())\n  title     String\n  body      String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  userId    Int\n  postId    Int\n  published Boolean  @default(false)\n\n  author User @relation(fields: [userId], references: [id])\n  post   Post @relation(fields: [postId], references: [id])\n}\n",
+  "inlineSchemaHash": "1c1f6832bf417b4c8590d8d936c01ab97a237515e0532695fcf17a33e198b855",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"posts\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToUser\"}],\"dbName\":null},\"Post\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"body\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"published\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PostToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"notificationSettings\",\"kind\":\"enum\",\"type\":\"NotificationSettings\"},{\"name\":\"posts\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToUser\"},{\"name\":\"likedPosts\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostLikes\"},{\"name\":\"followedPosts\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostFollows\"},{\"name\":\"replies\",\"kind\":\"object\",\"type\":\"Reply\",\"relationName\":\"ReplyToUser\"}],\"dbName\":null},\"Post\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"body\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"published\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"likes\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PostLikes\"},{\"name\":\"follows\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PostFollows\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PostToUser\"},{\"name\":\"replies\",\"kind\":\"object\",\"type\":\"Reply\",\"relationName\":\"PostToReply\"},{\"name\":\"tags\",\"kind\":\"object\",\"type\":\"Tag\",\"relationName\":\"PostToTag\"}],\"dbName\":null},\"Tag\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"post\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToTag\"}],\"dbName\":null},\"Reply\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"body\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"postId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"published\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ReplyToUser\"},{\"name\":\"post\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToReply\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),
