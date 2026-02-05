@@ -1,17 +1,28 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
+import z from 'zod';
 
+const UserSchema = z.object({
+    username: z
+        .string()
+        .min(5, 'at least 5 characters')
+        .max(50, 'at most 50 characters'),
+    email: z.email(),
+});
 
-const validateUsername = (req: Request, res: Response, next: NextFunction) => {
-    const username = req?.body?.username;
+type User = z.infer<typeof UserSchema>;
 
-    if (!username) {
-        res.status(400).json({ error: 'Username must exist' });
-    }
-    if (username.length < 5 || username.length > 30) {
-        res.status(400).json({ error: 'Username must be between 5 and 30 characters' });
+const validateAccount = (
+    req: Request<unknown, unknown, User>,
+    res: Response,
+    next: NextFunction,
+) => {
+    const validation = UserSchema.safeParse(req.body);
+
+    if (!validation.success) {
+        return res.status(400).json({ errors: validation.error.issues });
     }
 
     next();
-}
+};
 
-export default { validateUsername }
+export default { validateAccount };
