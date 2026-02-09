@@ -5,7 +5,7 @@ import validation from '../middleware/validation.js';
 const router = express.Router();
 
 router.get('/:id', repliesController.getReply);
-router.put('/:id', repliesController.updateReply);
+router.patch('/:id', repliesController.updateReply);
 router.delete('/:id', repliesController.deleteReply);
 
 export default router;
