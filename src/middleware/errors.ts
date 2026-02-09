@@ -6,7 +6,7 @@ const errorHandler = (
     res: Response,
     next: NextFunction,
 ) => {
-    if (err.message === '404') {
+    if (err.message === '404' || err.code === 'P2025') {
         return res.status(404).json({ error: 'resource not found' });
     }
 
