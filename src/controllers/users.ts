@@ -1,21 +1,23 @@
-import express, {
-    NextFunction,
-    Request,
-    RequestHandler,
-    Response,
-} from 'express';
+import { RequestHandler } from 'express';
 import prisma from '../prisma.js';
 
-export const getUsers = async (req: Request, res: Response) => {
+export const getUsers: RequestHandler = async (req, res) => {
     const users = await prisma.user.findMany();
     res.json({ users });
 };
 
-export const createUser = async (req: Request, res: Response) => {
-    res.json({ message: 'hit' });
+export const createUser: RequestHandler = async (req, res) => {
+    const user = await prisma.user.create({
+        data: {
+            name: req.body.name,
+            email: req.body.email,
+            username: req.body.username,
+        },
+    });
+    res.status(201).json({ user });
 };
 
-export const getUser = async (req: Request, res: Response) => {
+export const getUser: RequestHandler = async (req, res, next) => {
     const id = Number.parseInt(req.params.id as string);
     const user = await prisma.user.findFirst({
         where: { id: id },
@@ -25,8 +27,7 @@ export const getUser = async (req: Request, res: Response) => {
     });
 
     if (!user) {
-        res.status(404).json({ error: 'User not found' });
-        return;
+        return next(new Error('404'));
     }
 
     res.json({ user });
