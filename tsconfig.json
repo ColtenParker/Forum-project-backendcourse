@@ -1,19 +1,34 @@
+// {
+//     "compilerOptions": {
+//         "target": "esnext",
+//         "module": "nodenext",
+//         "strict": true,
+//         "esModuleInterop": true,
+//         "skipLibCheck": true,
+//         "forceConsistentCasingInFileNames": true,
+//         "outDir": "dist",
+//         "rootDir": "./src",
+//         "moduleResolution": "nodenext",
+//         "allowSyntheticDefaultImports": true,
+
+//     },
+//     "include": [
+//         "src/app.ts",
+//         "src/seed.ts"
+//     ]
+// }
+
 {
     "compilerOptions": {
         "target": "esnext",
         "module": "nodenext",
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "outDir": "dist",
-        "rootDir": "./src",
         "moduleResolution": "nodenext",
-        "allowSyntheticDefaultImports": true,
-        
-    },
-    "include": [
-        "src/app.ts",
-        "src/seed.ts"
-    ]
+        "outDir": "dist",
+        "rootDir": ".",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "typeRoots": ["src/types", "./node_modules/@types"]
+    }
 }

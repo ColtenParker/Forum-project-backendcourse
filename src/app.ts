@@ -13,6 +13,14 @@ const port = 3000;
 app.use(express.json());
 app.use(xss);
 app.use(logging.logRequest);
+
+app.use((req, res, next) => {
+    req.user = {
+        userId: 15,
+    };
+    next();
+});
+
 app.use('/v1/users', usersRouter);
 app.use('/v1/posts', postsRouter);
 app.use('/v1/replies', repliesRouter);

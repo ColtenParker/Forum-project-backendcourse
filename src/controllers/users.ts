@@ -14,7 +14,7 @@ export const createUser: RequestHandler = async (req, res) => {
 };
 
 export const getUser: RequestHandler = async (req, res, next) => {
-    const id = Number.parseInt(req.params.id as string);
+    const id = Number.parseInt(req.params.id);
     const user = await prisma.user.findUnique({
         where: { id: id },
         include: {
@@ -30,7 +30,7 @@ export const getUser: RequestHandler = async (req, res, next) => {
 };
 
 export const updateUser: RequestHandler = async (req, res) => {
-    const userId = parseInt(req.params.id as string);
+    const userId = req.user.userId;
     const user = await prisma.user.update({
         where: { id: userId },
         data: req.body,
@@ -40,7 +40,7 @@ export const updateUser: RequestHandler = async (req, res) => {
 };
 
 export const deleteUser: RequestHandler = async (req, res) => {
-    const userId = parseInt(req.params.id as string);
+    const userId = req.user.userId;
     const result = await prisma.user.delete({
         where: { id: userId },
     });
@@ -49,7 +49,7 @@ export const deleteUser: RequestHandler = async (req, res) => {
 };
 
 export const getUserPosts: RequestHandler = async (req, res, next) => {
-    const userId = parseInt(req.params.id as string);
+    const userId = parseInt(req.params.id);
     const user = await prisma.user.findUnique({
         where: { id: userId },
         include: {
@@ -64,7 +64,7 @@ export const getUserPosts: RequestHandler = async (req, res, next) => {
 };
 
 export const getUserLikedPosts: RequestHandler = async (req, res, next) => {
-    const userId = parseInt(req.params.id as string);
+    const userId = parseInt(req.params.id);
     const user = await prisma.user.findUnique({
         where: { id: userId },
         include: {
@@ -79,7 +79,7 @@ export const getUserLikedPosts: RequestHandler = async (req, res, next) => {
 };
 
 export const getUserFollowedPosts: RequestHandler = async (req, res, next) => {
-    const userId = parseInt(req.params.id as string);
+    const userId = parseInt(req.params.id);
     const user = await prisma.user.findUnique({
         where: { id: userId },
         include: {

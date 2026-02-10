@@ -52,13 +52,11 @@ model Tag {
 
 model Reply {
     id        Int      @id @default(autoincrement())
-    title     String
     body      String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     userId    Int
     postId    Int
-    published Boolean  @default(false)
 
     author User @relation(fields: [userId], references: [id])
     post   Post @relation(fields: [postId], references: [id])

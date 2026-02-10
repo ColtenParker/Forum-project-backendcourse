@@ -4822,35 +4822,29 @@ export namespace Prisma {
 
   export type ReplyMinAggregateOutputType = {
     id: number | null
-    title: string | null
     body: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
     postId: number | null
-    published: boolean | null
   }
 
   export type ReplyMaxAggregateOutputType = {
     id: number | null
-    title: string | null
     body: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
     postId: number | null
-    published: boolean | null
   }
 
   export type ReplyCountAggregateOutputType = {
     id: number
-    title: number
     body: number
     createdAt: number
     updatedAt: number
     userId: number
     postId: number
-    published: number
     _all: number
   }
 
@@ -4869,35 +4863,29 @@ export namespace Prisma {
 
   export type ReplyMinAggregateInputType = {
     id?: true
-    title?: true
     body?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
     postId?: true
-    published?: true
   }
 
   export type ReplyMaxAggregateInputType = {
     id?: true
-    title?: true
     body?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
     postId?: true
-    published?: true
   }
 
   export type ReplyCountAggregateInputType = {
     id?: true
-    title?: true
     body?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
     postId?: true
-    published?: true
     _all?: true
   }
 
@@ -4989,13 +4977,11 @@ export namespace Prisma {
 
   export type ReplyGroupByOutputType = {
     id: number
-    title: string
     body: string
     createdAt: Date
     updatedAt: Date
     userId: number
     postId: number
-    published: boolean
     _count: ReplyCountAggregateOutputType | null
     _avg: ReplyAvgAggregateOutputType | null
     _sum: ReplySumAggregateOutputType | null
@@ -5019,55 +5005,47 @@ export namespace Prisma {
 
   export type ReplySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
     body?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     postId?: boolean
-    published?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["reply"]>
 
   export type ReplySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
     body?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     postId?: boolean
-    published?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["reply"]>
 
   export type ReplySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
     body?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     postId?: boolean
-    published?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["reply"]>
 
   export type ReplySelectScalar = {
     id?: boolean
-    title?: boolean
     body?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     postId?: boolean
-    published?: boolean
   }
 
-  export type ReplyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "body" | "createdAt" | "updatedAt" | "userId" | "postId" | "published", ExtArgs["result"]["reply"]>
+  export type ReplyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "body" | "createdAt" | "updatedAt" | "userId" | "postId", ExtArgs["result"]["reply"]>
   export type ReplyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
@@ -5089,13 +5067,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      title: string
       body: string
       createdAt: Date
       updatedAt: Date
       userId: number
       postId: number
-      published: boolean
     }, ExtArgs["result"]["reply"]>
     composites: {}
   }
@@ -5522,13 +5498,11 @@ export namespace Prisma {
    */
   interface ReplyFieldRefs {
     readonly id: FieldRef<"Reply", 'Int'>
-    readonly title: FieldRef<"Reply", 'String'>
     readonly body: FieldRef<"Reply", 'String'>
     readonly createdAt: FieldRef<"Reply", 'DateTime'>
     readonly updatedAt: FieldRef<"Reply", 'DateTime'>
     readonly userId: FieldRef<"Reply", 'Int'>
     readonly postId: FieldRef<"Reply", 'Int'>
-    readonly published: FieldRef<"Reply", 'Boolean'>
   }
     
 
@@ -5992,13 +5966,11 @@ export namespace Prisma {
 
   export const ReplyScalarFieldEnum: {
     id: 'id',
-    title: 'title',
     body: 'body',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId',
-    postId: 'postId',
-    published: 'published'
+    postId: 'postId'
   };
 
   export type ReplyScalarFieldEnum = (typeof ReplyScalarFieldEnum)[keyof typeof ReplyScalarFieldEnum]
@@ -6302,26 +6274,22 @@ export namespace Prisma {
     OR?: ReplyWhereInput[]
     NOT?: ReplyWhereInput | ReplyWhereInput[]
     id?: IntFilter<"Reply"> | number
-    title?: StringFilter<"Reply"> | string
     body?: StringFilter<"Reply"> | string
     createdAt?: DateTimeFilter<"Reply"> | Date | string
     updatedAt?: DateTimeFilter<"Reply"> | Date | string
     userId?: IntFilter<"Reply"> | number
     postId?: IntFilter<"Reply"> | number
-    published?: BoolFilter<"Reply"> | boolean
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
   }
 
   export type ReplyOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrder
     body?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
-    published?: SortOrder
     author?: UserOrderByWithRelationInput
     post?: PostOrderByWithRelationInput
   }
@@ -6331,26 +6299,22 @@ export namespace Prisma {
     AND?: ReplyWhereInput | ReplyWhereInput[]
     OR?: ReplyWhereInput[]
     NOT?: ReplyWhereInput | ReplyWhereInput[]
-    title?: StringFilter<"Reply"> | string
     body?: StringFilter<"Reply"> | string
     createdAt?: DateTimeFilter<"Reply"> | Date | string
     updatedAt?: DateTimeFilter<"Reply"> | Date | string
     userId?: IntFilter<"Reply"> | number
     postId?: IntFilter<"Reply"> | number
-    published?: BoolFilter<"Reply"> | boolean
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
   }, "id">
 
   export type ReplyOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
     body?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
-    published?: SortOrder
     _count?: ReplyCountOrderByAggregateInput
     _avg?: ReplyAvgOrderByAggregateInput
     _max?: ReplyMaxOrderByAggregateInput
@@ -6363,13 +6327,11 @@ export namespace Prisma {
     OR?: ReplyScalarWhereWithAggregatesInput[]
     NOT?: ReplyScalarWhereWithAggregatesInput | ReplyScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Reply"> | number
-    title?: StringWithAggregatesFilter<"Reply"> | string
     body?: StringWithAggregatesFilter<"Reply"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Reply"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Reply"> | Date | string
     userId?: IntWithAggregatesFilter<"Reply"> | number
     postId?: IntWithAggregatesFilter<"Reply"> | number
-    published?: BoolWithAggregatesFilter<"Reply"> | boolean
   }
 
   export type UserCreateInput = {
@@ -6567,75 +6529,61 @@ export namespace Prisma {
   }
 
   export type ReplyCreateInput = {
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    published?: boolean
     author: UserCreateNestedOneWithoutRepliesInput
     post: PostCreateNestedOneWithoutRepliesInput
   }
 
   export type ReplyUncheckedCreateInput = {
     id?: number
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
     postId: number
-    published?: boolean
   }
 
   export type ReplyUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    published?: BoolFieldUpdateOperationsInput | boolean
     author?: UserUpdateOneRequiredWithoutRepliesNestedInput
     post?: PostUpdateOneRequiredWithoutRepliesNestedInput
   }
 
   export type ReplyUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     postId?: IntFieldUpdateOperationsInput | number
-    published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReplyCreateManyInput = {
     id?: number
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
     postId: number
-    published?: boolean
   }
 
   export type ReplyUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReplyUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     postId?: IntFieldUpdateOperationsInput | number
-    published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6892,13 +6840,11 @@ export namespace Prisma {
 
   export type ReplyCountOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
     body?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
-    published?: SortOrder
   }
 
   export type ReplyAvgOrderByAggregateInput = {
@@ -6909,24 +6855,20 @@ export namespace Prisma {
 
   export type ReplyMaxOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
     body?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
-    published?: SortOrder
   }
 
   export type ReplyMinOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
     body?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
-    published?: SortOrder
   }
 
   export type ReplySumOrderByAggregateInput = {
@@ -7563,22 +7505,18 @@ export namespace Prisma {
   }
 
   export type ReplyCreateWithoutAuthorInput = {
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    published?: boolean
     post: PostCreateNestedOneWithoutRepliesInput
   }
 
   export type ReplyUncheckedCreateWithoutAuthorInput = {
     id?: number
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
     postId: number
-    published?: boolean
   }
 
   export type ReplyCreateOrConnectWithoutAuthorInput = {
@@ -7673,13 +7611,11 @@ export namespace Prisma {
     OR?: ReplyScalarWhereInput[]
     NOT?: ReplyScalarWhereInput | ReplyScalarWhereInput[]
     id?: IntFilter<"Reply"> | number
-    title?: StringFilter<"Reply"> | string
     body?: StringFilter<"Reply"> | string
     createdAt?: DateTimeFilter<"Reply"> | Date | string
     updatedAt?: DateTimeFilter<"Reply"> | Date | string
     userId?: IntFilter<"Reply"> | number
     postId?: IntFilter<"Reply"> | number
-    published?: BoolFilter<"Reply"> | boolean
   }
 
   export type UserCreateWithoutLikedPostsInput = {
@@ -7767,22 +7703,18 @@ export namespace Prisma {
   }
 
   export type ReplyCreateWithoutPostInput = {
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    published?: boolean
     author: UserCreateNestedOneWithoutRepliesInput
   }
 
   export type ReplyUncheckedCreateWithoutPostInput = {
     id?: number
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    published?: boolean
   }
 
   export type ReplyCreateOrConnectWithoutPostInput = {
@@ -8112,12 +8044,10 @@ export namespace Prisma {
 
   export type ReplyCreateManyAuthorInput = {
     id?: number
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
     postId: number
-    published?: boolean
   }
 
   export type PostUpdateWithoutAuthorInput = {
@@ -8225,42 +8155,34 @@ export namespace Prisma {
   }
 
   export type ReplyUpdateWithoutAuthorInput = {
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    published?: BoolFieldUpdateOperationsInput | boolean
     post?: PostUpdateOneRequiredWithoutRepliesNestedInput
   }
 
   export type ReplyUncheckedUpdateWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postId?: IntFieldUpdateOperationsInput | number
-    published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReplyUncheckedUpdateManyWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postId?: IntFieldUpdateOperationsInput | number
-    published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReplyCreateManyPostInput = {
     id?: number
-    title: string
     body: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    published?: boolean
   }
 
   export type UserUpdateWithoutLikedPostsInput = {
@@ -8328,32 +8250,26 @@ export namespace Prisma {
   }
 
   export type ReplyUpdateWithoutPostInput = {
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    published?: BoolFieldUpdateOperationsInput | boolean
     author?: UserUpdateOneRequiredWithoutRepliesNestedInput
   }
 
   export type ReplyUncheckedUpdateWithoutPostInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReplyUncheckedUpdateManyWithoutPostInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
     body?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TagUpdateWithoutPostInput = {

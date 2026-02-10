@@ -147,13 +147,11 @@ exports.Prisma.TagScalarFieldEnum = {
 
 exports.Prisma.ReplyScalarFieldEnum = {
   id: 'id',
-  title: 'title',
   body: 'body',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
-  postId: 'postId',
-  published: 'published'
+  postId: 'postId'
 };
 
 exports.Prisma.SortOrder = {
