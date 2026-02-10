@@ -16,7 +16,7 @@ app.use(logging.logRequest);
 
 app.use((req, res, next) => {
     req.user = {
-        userId: 15,
+        userId: 19,
     };
     next();
 });

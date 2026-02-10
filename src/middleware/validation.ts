@@ -1,28 +1,20 @@
-import { Request, Response, NextFunction } from 'express';
-import z from 'zod';
+import { RequestHandler } from 'express';
+import z, { ZodType } from 'zod';
+import * as schemas from './schemas.js';
+import { ValidationError } from './errors.js';
 
-const UserSchema = z.object({
-    username: z
-        .string()
-        .min(5, 'at least 5 characters')
-        .max(50, 'at most 50 characters'),
-    email: z.email(),
-});
+//returns a function
+export const validateBody =
+    (schema: ZodType<any>): RequestHandler =>
+    (req, res, next) => {
+        const result = schema.safeParse(req.body);
 
-type User = z.infer<typeof UserSchema>;
+        if (!result.success) {
+            return next(new ValidationError(result.error.issues)); //error case
+        }
 
-const validateAccount = (
-    req: Request<unknown, unknown, User>,
-    res: Response,
-    next: NextFunction,
-) => {
-    const validation = UserSchema.safeParse(req.body);
+        next();
+    };
 
-    if (!validation.success) {
-        return res.status(400).json({ errors: validation.error.issues });
-    }
-
-    next();
-};
-
-export default { validateAccount };
+export const createUser = validateBody(schemas.User);
+export const updateUser = validateBody(schemas.UserUpdate);

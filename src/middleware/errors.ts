@@ -1,4 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
+import z from 'zod';
+
+export class ValidationError extends Error {
+    constructor(public validationErrors: z.core.$ZodIssue[]) {
+        super('Validation Error');
+        this.name = this.constructor.name;
+    }
+}
 
 const errorHandler = (
     err: any,
@@ -6,6 +14,9 @@ const errorHandler = (
     res: Response,
     next: NextFunction,
 ) => {
+    if (err instanceof ValidationError) {
+        return res.status(400).json({ error: err.validationErrors });
+    }
     if (err.message === '404' || err.code === 'P2025') {
         return res.status(404).json({ error: 'resource not found' });
     }
