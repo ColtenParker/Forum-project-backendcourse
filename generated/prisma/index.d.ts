@@ -1324,6 +1324,7 @@ export namespace Prisma {
     username: string | null
     name: string | null
     verified: boolean | null
+    password: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1332,6 +1333,7 @@ export namespace Prisma {
     username: string | null
     name: string | null
     verified: boolean | null
+    password: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1340,6 +1342,7 @@ export namespace Prisma {
     username: number
     name: number
     verified: number
+    password: number
     notificationSettings: number
     _all: number
   }
@@ -1359,6 +1362,7 @@ export namespace Prisma {
     username?: true
     name?: true
     verified?: true
+    password?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1367,6 +1371,7 @@ export namespace Prisma {
     username?: true
     name?: true
     verified?: true
+    password?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1375,6 +1380,7 @@ export namespace Prisma {
     username?: true
     name?: true
     verified?: true
+    password?: true
     notificationSettings?: true
     _all?: true
   }
@@ -1471,6 +1477,7 @@ export namespace Prisma {
     username: string
     name: string
     verified: boolean
+    password: string
     notificationSettings: $Enums.NotificationSettings[]
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -1499,6 +1506,7 @@ export namespace Prisma {
     username?: boolean
     name?: boolean
     verified?: boolean
+    password?: boolean
     notificationSettings?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
     likedPosts?: boolean | User$likedPostsArgs<ExtArgs>
@@ -1513,6 +1521,7 @@ export namespace Prisma {
     username?: boolean
     name?: boolean
     verified?: boolean
+    password?: boolean
     notificationSettings?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1522,6 +1531,7 @@ export namespace Prisma {
     username?: boolean
     name?: boolean
     verified?: boolean
+    password?: boolean
     notificationSettings?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1531,10 +1541,11 @@ export namespace Prisma {
     username?: boolean
     name?: boolean
     verified?: boolean
+    password?: boolean
     notificationSettings?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "name" | "verified" | "notificationSettings", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "name" | "verified" | "password" | "notificationSettings", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     likedPosts?: boolean | User$likedPostsArgs<ExtArgs>
@@ -1559,6 +1570,7 @@ export namespace Prisma {
       username: string
       name: string
       verified: boolean
+      password: string
       notificationSettings: $Enums.NotificationSettings[]
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -1992,6 +2004,7 @@ export namespace Prisma {
     readonly username: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly verified: FieldRef<"User", 'Boolean'>
+    readonly password: FieldRef<"User", 'String'>
     readonly notificationSettings: FieldRef<"User", 'NotificationSettings[]'>
   }
     
@@ -5937,6 +5950,7 @@ export namespace Prisma {
     username: 'username',
     name: 'name',
     verified: 'verified',
+    password: 'password',
     notificationSettings: 'notificationSettings'
   };
 
@@ -6086,6 +6100,7 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     verified?: BoolFilter<"User"> | boolean
+    password?: StringFilter<"User"> | string
     notificationSettings?: EnumNotificationSettingsNullableListFilter<"User">
     posts?: PostListRelationFilter
     likedPosts?: PostListRelationFilter
@@ -6099,6 +6114,7 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrder
     verified?: SortOrder
+    password?: SortOrder
     notificationSettings?: SortOrder
     posts?: PostOrderByRelationAggregateInput
     likedPosts?: PostOrderByRelationAggregateInput
@@ -6115,6 +6131,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
     verified?: BoolFilter<"User"> | boolean
+    password?: StringFilter<"User"> | string
     notificationSettings?: EnumNotificationSettingsNullableListFilter<"User">
     posts?: PostListRelationFilter
     likedPosts?: PostListRelationFilter
@@ -6128,6 +6145,7 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrder
     verified?: SortOrder
+    password?: SortOrder
     notificationSettings?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -6145,6 +6163,7 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     verified?: BoolWithAggregatesFilter<"User"> | boolean
+    password?: StringWithAggregatesFilter<"User"> | string
     notificationSettings?: EnumNotificationSettingsNullableListFilter<"User">
   }
 
@@ -6339,6 +6358,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostCreateNestedManyWithoutAuthorInput
     likedPosts?: PostCreateNestedManyWithoutLikesInput
@@ -6352,6 +6372,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
@@ -6364,6 +6385,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
@@ -6377,6 +6399,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
@@ -6390,6 +6413,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
   }
 
@@ -6398,6 +6422,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
   }
 
@@ -6407,6 +6432,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
   }
 
@@ -6651,6 +6677,7 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrder
     verified?: SortOrder
+    password?: SortOrder
     notificationSettings?: SortOrder
   }
 
@@ -6664,6 +6691,7 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrder
     verified?: SortOrder
+    password?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -6672,6 +6700,7 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrder
     verified?: SortOrder
+    password?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -7623,6 +7652,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostCreateNestedManyWithoutAuthorInput
     followedPosts?: PostCreateNestedManyWithoutFollowsInput
@@ -7635,6 +7665,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     followedPosts?: PostUncheckedCreateNestedManyWithoutFollowsInput
@@ -7651,6 +7682,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostCreateNestedManyWithoutAuthorInput
     likedPosts?: PostCreateNestedManyWithoutLikesInput
@@ -7663,6 +7695,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
@@ -7679,6 +7712,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     likedPosts?: PostCreateNestedManyWithoutLikesInput
     followedPosts?: PostCreateNestedManyWithoutFollowsInput
@@ -7691,6 +7725,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
     followedPosts?: PostUncheckedCreateNestedManyWithoutFollowsInput
@@ -7766,6 +7801,7 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     verified?: BoolFilter<"User"> | boolean
+    password?: StringFilter<"User"> | string
     notificationSettings?: EnumNotificationSettingsNullableListFilter<"User">
   }
 
@@ -7801,6 +7837,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
     followedPosts?: PostUpdateManyWithoutFollowsNestedInput
@@ -7813,6 +7850,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
     followedPosts?: PostUncheckedUpdateManyWithoutFollowsNestedInput
@@ -7910,6 +7948,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostCreateNestedManyWithoutAuthorInput
     likedPosts?: PostCreateNestedManyWithoutLikesInput
@@ -7922,6 +7961,7 @@ export namespace Prisma {
     username: string
     name: string
     verified?: boolean
+    password: string
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
@@ -7979,6 +8019,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
@@ -7991,6 +8032,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
@@ -8190,6 +8232,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUpdateManyWithoutAuthorNestedInput
     followedPosts?: PostUpdateManyWithoutFollowsNestedInput
@@ -8202,6 +8245,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     followedPosts?: PostUncheckedUpdateManyWithoutFollowsNestedInput
@@ -8214,6 +8258,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
   }
 
@@ -8222,6 +8267,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
@@ -8234,6 +8280,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
@@ -8246,6 +8293,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
   }
 
