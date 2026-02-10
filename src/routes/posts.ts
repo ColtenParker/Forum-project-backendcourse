@@ -5,10 +5,10 @@ import * as validation from '../middleware/validation.js';
 const router = express.Router();
 
 router.get('/', postsController.getPosts);
-router.post('/', postsController.createPost);
+router.post('/', validation.createPost, postsController.createPost);
 
 router.get('/:id', postsController.getPost);
-router.patch('/:id', postsController.updatePost);
+router.patch('/:id', validation.updatePost, postsController.updatePost);
 router.delete('/:id', postsController.deletePost);
 
 router.post('/:id/likes', postsController.createLike);
