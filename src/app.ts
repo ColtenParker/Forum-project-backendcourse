@@ -7,15 +7,18 @@ import errors from './middleware/errors.js';
 import xss from './middleware/xss.js';
 import notFound from './middleware/notFound.js';
 import authRouter from './routes/auth.js';
-import authenticated from './middleware/auth.js'
+import authenticated from './middleware/auth.js';
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use(express.json());
 app.use(xss);
 app.use(logging.logRequest);
 
+app.get('/', (req, res) => {
+    res.json({ message: 'Home Page' });
+});
 
 app.use('/v1/auth', authRouter);
 
