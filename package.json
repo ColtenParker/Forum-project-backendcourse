@@ -8,6 +8,9 @@
         "run": "tsc && node dist/app.js",
         "dev": "nodemon --ext ts,js,json --exec node --no-warnings --loader ts-node/esm src/app.ts"
     },
+    "prisma": {
+        "seed": "node --loader ts-node/esm src/seed.ts"
+    },
     "type": "module",
     "keywords": [],
     "author": "",

@@ -17,6 +17,7 @@ model User {
 
   password             Password?
   notificationSettings NotificationSettings[]
+  roles                Roles[]
   posts                Post[]
   likedPosts           Post[]                 @relation("PostLikes")
   followedPosts        Post[]                 @relation("PostFollows")
@@ -28,13 +29,17 @@ model Password {
   userId Int    @unique
   hash   String
 
-  user User @relation(fields: userId, references: id)
+  user User @relation(fields: userId, references: id, onDelete: Cascade)
 }
 
 enum NotificationSettings {
   SECURITY
   MARKETING
   POSTS
+}
+
+enum Roles {
+  ADMIN
 }
 
 model Post {

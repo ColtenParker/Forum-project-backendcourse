@@ -51,11 +51,22 @@ export namespace $Enums {
 
 export type NotificationSettings = (typeof NotificationSettings)[keyof typeof NotificationSettings]
 
+
+export const Roles: {
+  ADMIN: 'ADMIN'
+};
+
+export type Roles = (typeof Roles)[keyof typeof Roles]
+
 }
 
 export type NotificationSettings = $Enums.NotificationSettings
 
 export const NotificationSettings: typeof $Enums.NotificationSettings
+
+export type Roles = $Enums.Roles
+
+export const Roles: typeof $Enums.Roles
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1432,6 +1443,7 @@ export namespace Prisma {
     name: number
     verified: number
     notificationSettings: number
+    roles: number
     _all: number
   }
 
@@ -1467,6 +1479,7 @@ export namespace Prisma {
     name?: true
     verified?: true
     notificationSettings?: true
+    roles?: true
     _all?: true
   }
 
@@ -1563,6 +1576,7 @@ export namespace Prisma {
     name: string
     verified: boolean
     notificationSettings: $Enums.NotificationSettings[]
+    roles: $Enums.Roles[]
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1591,6 +1605,7 @@ export namespace Prisma {
     name?: boolean
     verified?: boolean
     notificationSettings?: boolean
+    roles?: boolean
     password?: boolean | User$passwordArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
     likedPosts?: boolean | User$likedPostsArgs<ExtArgs>
@@ -1606,6 +1621,7 @@ export namespace Prisma {
     name?: boolean
     verified?: boolean
     notificationSettings?: boolean
+    roles?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1615,6 +1631,7 @@ export namespace Prisma {
     name?: boolean
     verified?: boolean
     notificationSettings?: boolean
+    roles?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1624,9 +1641,10 @@ export namespace Prisma {
     name?: boolean
     verified?: boolean
     notificationSettings?: boolean
+    roles?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "name" | "verified" | "notificationSettings", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "name" | "verified" | "notificationSettings" | "roles", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     password?: boolean | User$passwordArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -1654,6 +1672,7 @@ export namespace Prisma {
       name: string
       verified: boolean
       notificationSettings: $Enums.NotificationSettings[]
+      roles: $Enums.Roles[]
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2088,6 +2107,7 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly verified: FieldRef<"User", 'Boolean'>
     readonly notificationSettings: FieldRef<"User", 'NotificationSettings[]'>
+    readonly roles: FieldRef<"User", 'Roles[]'>
   }
     
 
@@ -7121,7 +7141,8 @@ export namespace Prisma {
     username: 'username',
     name: 'name',
     verified: 'verified',
-    notificationSettings: 'notificationSettings'
+    notificationSettings: 'notificationSettings',
+    roles: 'roles'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -7240,6 +7261,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Roles[]'
+   */
+  export type ListEnumRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Roles[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Roles'
+   */
+  export type EnumRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Roles'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -7280,6 +7315,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     verified?: BoolFilter<"User"> | boolean
     notificationSettings?: EnumNotificationSettingsNullableListFilter<"User">
+    roles?: EnumRolesNullableListFilter<"User">
     password?: XOR<PasswordNullableScalarRelationFilter, PasswordWhereInput> | null
     posts?: PostListRelationFilter
     likedPosts?: PostListRelationFilter
@@ -7294,6 +7330,7 @@ export namespace Prisma {
     name?: SortOrder
     verified?: SortOrder
     notificationSettings?: SortOrder
+    roles?: SortOrder
     password?: PasswordOrderByWithRelationInput
     posts?: PostOrderByRelationAggregateInput
     likedPosts?: PostOrderByRelationAggregateInput
@@ -7311,6 +7348,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     verified?: BoolFilter<"User"> | boolean
     notificationSettings?: EnumNotificationSettingsNullableListFilter<"User">
+    roles?: EnumRolesNullableListFilter<"User">
     password?: XOR<PasswordNullableScalarRelationFilter, PasswordWhereInput> | null
     posts?: PostListRelationFilter
     likedPosts?: PostListRelationFilter
@@ -7325,6 +7363,7 @@ export namespace Prisma {
     name?: SortOrder
     verified?: SortOrder
     notificationSettings?: SortOrder
+    roles?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -7342,6 +7381,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     verified?: BoolWithAggregatesFilter<"User"> | boolean
     notificationSettings?: EnumNotificationSettingsNullableListFilter<"User">
+    roles?: EnumRolesNullableListFilter<"User">
   }
 
   export type PasswordWhereInput = {
@@ -7583,6 +7623,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordCreateNestedOneWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
     likedPosts?: PostCreateNestedManyWithoutLikesInput
@@ -7597,6 +7638,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedCreateNestedOneWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
@@ -7610,6 +7652,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUpdateOneWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
@@ -7624,6 +7667,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedUpdateOneWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
@@ -7638,6 +7682,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
   }
 
   export type UserUpdateManyMutationInput = {
@@ -7646,6 +7691,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -7655,6 +7701,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
   }
 
   export type PasswordCreateInput = {
@@ -7910,6 +7957,14 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type EnumRolesNullableListFilter<$PrismaModel = never> = {
+    equals?: $Enums.Roles[] | ListEnumRolesFieldRefInput<$PrismaModel> | null
+    has?: $Enums.Roles | EnumRolesFieldRefInput<$PrismaModel> | null
+    hasEvery?: $Enums.Roles[] | ListEnumRolesFieldRefInput<$PrismaModel>
+    hasSome?: $Enums.Roles[] | ListEnumRolesFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type PasswordNullableScalarRelationFilter = {
     is?: PasswordWhereInput | null
     isNot?: PasswordWhereInput | null
@@ -7942,6 +7997,7 @@ export namespace Prisma {
     name?: SortOrder
     verified?: SortOrder
     notificationSettings?: SortOrder
+    roles?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -8199,6 +8255,10 @@ export namespace Prisma {
     set: $Enums.NotificationSettings[]
   }
 
+  export type UserCreaterolesInput = {
+    set: $Enums.Roles[]
+  }
+
   export type PasswordCreateNestedOneWithoutUserInput = {
     create?: XOR<PasswordCreateWithoutUserInput, PasswordUncheckedCreateWithoutUserInput>
     connectOrCreate?: PasswordCreateOrConnectWithoutUserInput
@@ -8274,6 +8334,11 @@ export namespace Prisma {
   export type UserUpdatenotificationSettingsInput = {
     set?: $Enums.NotificationSettings[]
     push?: $Enums.NotificationSettings | $Enums.NotificationSettings[]
+  }
+
+  export type UserUpdaterolesInput = {
+    set?: $Enums.Roles[]
+    push?: $Enums.Roles | $Enums.Roles[]
   }
 
   export type PasswordUpdateOneWithoutUserNestedInput = {
@@ -9022,6 +9087,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     posts?: PostCreateNestedManyWithoutAuthorInput
     likedPosts?: PostCreateNestedManyWithoutLikesInput
     followedPosts?: PostCreateNestedManyWithoutFollowsInput
@@ -9035,6 +9101,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
     followedPosts?: PostUncheckedCreateNestedManyWithoutFollowsInput
@@ -9063,6 +9130,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     posts?: PostUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
     followedPosts?: PostUpdateManyWithoutFollowsNestedInput
@@ -9076,6 +9144,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
     followedPosts?: PostUncheckedUpdateManyWithoutFollowsNestedInput
@@ -9088,6 +9157,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordCreateNestedOneWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
     followedPosts?: PostCreateNestedManyWithoutFollowsInput
@@ -9101,6 +9171,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedCreateNestedOneWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     followedPosts?: PostUncheckedCreateNestedManyWithoutFollowsInput
@@ -9118,6 +9189,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordCreateNestedOneWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
     likedPosts?: PostCreateNestedManyWithoutLikesInput
@@ -9131,6 +9203,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedCreateNestedOneWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
@@ -9148,6 +9221,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordCreateNestedOneWithoutUserInput
     likedPosts?: PostCreateNestedManyWithoutLikesInput
     followedPosts?: PostCreateNestedManyWithoutFollowsInput
@@ -9161,6 +9235,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedCreateNestedOneWithoutUserInput
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
     followedPosts?: PostUncheckedCreateNestedManyWithoutFollowsInput
@@ -9237,6 +9312,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     verified?: BoolFilter<"User"> | boolean
     notificationSettings?: EnumNotificationSettingsNullableListFilter<"User">
+    roles?: EnumRolesNullableListFilter<"User">
   }
 
   export type UserUpsertWithWhereUniqueWithoutFollowedPostsInput = {
@@ -9272,6 +9348,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUpdateOneWithoutUserNestedInput
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
     followedPosts?: PostUpdateManyWithoutFollowsNestedInput
@@ -9285,6 +9362,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedUpdateOneWithoutUserNestedInput
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
     followedPosts?: PostUncheckedUpdateManyWithoutFollowsNestedInput
@@ -9383,6 +9461,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordCreateNestedOneWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
     likedPosts?: PostCreateNestedManyWithoutLikesInput
@@ -9396,6 +9475,7 @@ export namespace Prisma {
     name: string
     verified?: boolean
     notificationSettings?: UserCreatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserCreaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedCreateNestedOneWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     likedPosts?: PostUncheckedCreateNestedManyWithoutLikesInput
@@ -9454,6 +9534,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUpdateOneWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
@@ -9467,6 +9548,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedUpdateOneWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
@@ -9667,6 +9749,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUpdateOneWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
     followedPosts?: PostUpdateManyWithoutFollowsNestedInput
@@ -9680,6 +9763,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedUpdateOneWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     followedPosts?: PostUncheckedUpdateManyWithoutFollowsNestedInput
@@ -9693,6 +9777,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
   }
 
   export type UserUpdateWithoutFollowedPostsInput = {
@@ -9701,6 +9786,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUpdateOneWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUpdateManyWithoutLikesNestedInput
@@ -9714,6 +9800,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
     password?: PasswordUncheckedUpdateOneWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     likedPosts?: PostUncheckedUpdateManyWithoutLikesNestedInput
@@ -9727,6 +9814,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     verified?: BoolFieldUpdateOperationsInput | boolean
     notificationSettings?: UserUpdatenotificationSettingsInput | $Enums.NotificationSettings[]
+    roles?: UserUpdaterolesInput | $Enums.Roles[]
   }
 
   export type ReplyUpdateWithoutPostInput = {

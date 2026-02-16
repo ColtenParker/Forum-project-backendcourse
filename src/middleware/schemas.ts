@@ -1,5 +1,5 @@
 import { email, z } from 'zod';
-import { NotificationSettings } from '../../generated/prisma/index.js';
+import { NotificationSettings, Roles } from '../../generated/prisma/index.js';
 
 const userLazy: z.ZodLazy<any> = z.lazy(() => User);
 const postLazy: z.ZodLazy<any> = z.lazy(() => Post);
@@ -12,7 +12,8 @@ export const User = z.object({
     username: z.string().min(5, 'at least 5 chars').max(50, 'at most 50 chars'),
     password: z.string(),
     verified: z.boolean().optional(),
-    NotificationSettings: z.enum(NotificationSettings).array().optional(),
+    roles: z.enum(Roles).array().optional(),
+    notificationSettings: z.enum(NotificationSettings).array().optional(),
     posts: z.array(postLazy).optional(),
     postsLiked: z.array(postLazy).optional(),
     postReplies: z.array(replyLazy).optional(),
@@ -42,7 +43,7 @@ export const Login = User.pick({
     password: true,
 }).strict();
 
-export const UserUpdate = User.partial();
+export const UserUpdate = User.partial().omit({ roles: true }).strict();
 
 export const Post = z.object({
     id: z.number().int().nonnegative().optional(),

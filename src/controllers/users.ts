@@ -39,6 +39,15 @@ export const deleteUser: RequestHandler = async (req, res) => {
     res.sendStatus(200);
 };
 
+export const adminDeleteUser: RequestHandler = async (req, res) => {
+    const userId = parseInt(req.params.id);
+    const result = await prisma.user.delete({
+        where: { id: userId },
+    });
+
+    res.sendStatus(200);
+};
+
 export const getUserPosts: RequestHandler = async (req, res, next) => {
     const userId = parseInt(req.params.id);
     const user = await prisma.user.findUnique({

@@ -19,4 +19,11 @@ const auth: RequestHandler = (req, res, next) => {
     }
 };
 
+export const isAdmin: RequestHandler = (req, res, next) => {
+    if (!req?.user?.roles?.includes('ADMIN')) {
+        return res.status(403).json({ error: 'Unauthorized Action!' });
+    }
+    next();
+};
+
 export default auth;

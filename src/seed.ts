@@ -1,37 +1,19 @@
 import prisma from './prisma.js';
+import bcrypt from 'bcrypt';
 
-await prisma.post.deleteMany();
-await prisma.user.deleteMany();
+const password = await bcrypt.hash('MonkeyDLuffy25#$', 10);
 
-await prisma.user.createMany({
-    data: [
-        {
-            name: 'Colten Parker',
-            email: 'coltenparker00@gmail.com',
-            username: 'Options',
+await prisma.user.create({
+    data: {
+        name: 'admin',
+        username: 'admin',
+        email: 'admin@admin.com',
+        password: {
+            create: {
+                hash: password
+            }
         },
-        {
-            name: 'DJ Wallace',
-            email: 'dj8694@yahoo.com',
-            username: 'DJ8694',
-        },
-        {
-            name: 'May Parker',
-            email: 'mariaparker.mdp@gmail.com',
-            username: 'minimushroomms',
-        },
-    ],
+        roles: ['ADMIN'],
+    }
 });
 
-const user = await prisma.user.findFirst();
-
-await prisma.post.createMany({
-    data: [
-        { title: 'first post!', body: 'My first post!!!', userId: user?.id! },
-        {
-            title: 'follow up post!',
-            body: 'My first post, cont',
-            userId: user?.id!,
-        },
-    ],
-});

@@ -127,7 +127,8 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   name: 'name',
   verified: 'verified',
-  notificationSettings: 'notificationSettings'
+  notificationSettings: 'notificationSettings',
+  roles: 'roles'
 };
 
 exports.Prisma.PasswordScalarFieldEnum = {
@@ -173,6 +174,10 @@ exports.NotificationSettings = exports.$Enums.NotificationSettings = {
   SECURITY: 'SECURITY',
   MARKETING: 'MARKETING',
   POSTS: 'POSTS'
+};
+
+exports.Roles = exports.$Enums.Roles = {
+  ADMIN: 'ADMIN'
 };
 
 exports.Prisma.ModelName = {
