@@ -37,7 +37,7 @@ export const getUser: RequestHandler = async (req, res, next) => {
 };
 
 export const updateUser: RequestHandler = async (req, res) => {
-    const userId = req.user.userId;
+    const userId = req.user.id;
     const user = await prisma.user.update({
         where: { id: userId },
         data: req.body,
@@ -47,7 +47,7 @@ export const updateUser: RequestHandler = async (req, res) => {
 };
 
 export const deleteUser: RequestHandler = async (req, res) => {
-    const userId = req.user.userId;
+    const userId = req.user.id;
     const result = await prisma.user.delete({
         where: { id: userId },
     });
