@@ -13,15 +13,22 @@ export const login: RequestHandler = async (req, res) => {
 
     const user = await prisma.user.findUnique({
         where: { username },
+        include: {
+            password: true
+        }
     });
 
     if (!user) {
         return res.status(401).json({ message: 'Invalid username' });
     }
 
+    if (!user.password?.hash){
+        return res.status(401).json({message: 'error with username or password'})
+    }
+
     const passwordValid = await bcrypt.compare(
         req.body.password,
-        user.password,
+        user.password.hash,
     );
 
     if (!passwordValid) {

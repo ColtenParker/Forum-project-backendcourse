@@ -11,11 +11,10 @@ export const createUser: RequestHandler = async (req, res) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
 
-    const userDb = await prisma.user.create({
+    const user = await prisma.user.create({
         data: { ...req.body, password: hashedPassword },
     });
 
-    const { password, ...user } = userDb;
 
     res.status(201).json({ user });
 };
@@ -24,9 +23,6 @@ export const getUser: RequestHandler = async (req, res, next) => {
     const id = Number.parseInt(req.params.id);
     const user = await prisma.user.findUnique({
         where: { id: id },
-        include: {
-            posts: true,
-        },
     });
 
     if (!user) {
