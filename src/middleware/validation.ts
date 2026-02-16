@@ -30,7 +30,8 @@ export const validateBody =
     };
 
 //user validation
-export const createUser = validateBody(schemas.User);
+export const login = validateBody(schemas.Login);
+export const createUser = validateBody(schemas.Account);
 export const updateUser = validateBody(schemas.UserUpdate);
 
 //post validation

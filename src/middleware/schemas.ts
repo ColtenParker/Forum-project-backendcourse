@@ -8,22 +8,39 @@ const replyLazy: z.ZodLazy<any> = z.lazy(() => Reply);
 export const User = z.object({
     id: z.number().int().nonnegative().optional(),
     email: z.email(),
+    name: z.string().max(50, 'at most 50 chars'),
     username: z.string().min(5, 'at least 5 chars').max(50, 'at most 50 chars'),
-    password: z
-        .string()
-        .min(8, 'at least 8 chars')
-        .max(24, 'at most 24 chars')
-        .regex(
-            /[^A-Za-z0-9]/,
-            'Password must contain at least one special character',
-        )
-        .regex(/[0-9]/, 'Password must contain at least one number'),
+    password: z.string(),
     verified: z.boolean().optional(),
     NotificationSettings: z.enum(NotificationSettings).array().optional(),
     posts: z.array(postLazy).optional(),
     postsLiked: z.array(postLazy).optional(),
     postReplies: z.array(replyLazy).optional(),
 });
+
+export const Account = User.pick({
+    name: true,
+    username: true,
+    email: true,
+    password: true,
+})
+    .extend({
+        password: z
+            .string()
+            .min(8, 'at least 8 chars')
+            .max(24, 'at most 24 chars')
+            .regex(
+                /[^A-Za-z0-9]/,
+                'Password must contain at least one special character',
+            )
+            .regex(/[0-9]/, 'Password must contain at least one number'),
+    })
+    .strict();
+
+export const Login = User.pick({
+    username: true,
+    password: true,
+}).strict();
 
 export const UserUpdate = User.partial();
 

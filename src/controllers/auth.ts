@@ -14,16 +14,18 @@ export const login: RequestHandler = async (req, res) => {
     const user = await prisma.user.findUnique({
         where: { username },
         include: {
-            password: true
-        }
+            password: true,
+        },
     });
 
     if (!user) {
         return res.status(401).json({ message: 'Invalid username' });
     }
 
-    if (!user.password?.hash){
-        return res.status(401).json({message: 'error with username or password'})
+    if (!user.password?.hash) {
+        return res
+            .status(401)
+            .json({ message: 'error with username or password' });
     }
 
     const passwordValid = await bcrypt.compare(
@@ -44,4 +46,22 @@ export const login: RequestHandler = async (req, res) => {
     );
 
     res.json({ token });
+};
+
+export const register: RequestHandler = async (req, res) => {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+
+    const user = await prisma.user.create({
+        data: {
+            ...req.body,
+            password: {
+                create: {
+                    hash: hashedPassword,
+                },
+            },
+        },
+    });
+
+    res.status(201).json({ user });
 };
