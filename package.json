@@ -1,6 +1,6 @@
 {
     "name": "forum-backend",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "dist/app.js",
     "scripts": {
         "build": "tsc",
@@ -9,7 +9,7 @@
         "dev": "nodemon --ext ts,js,json --exec node --no-warnings --loader ts-node/esm src/app.ts"
     },
     "prisma": {
-        "seed": "node --loader ts-node/esm src/seed.ts"
+        "seed": "node dist/seed.js"
     },
     "type": "module",
     "keywords": [],
