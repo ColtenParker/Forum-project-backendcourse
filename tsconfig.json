@@ -32,8 +32,6 @@
         "typeRoots": ["src/types", "./node_modules/@types"]
     },
     "include": [
-        "src/app.ts",
-        "src/seed.ts",
-        "src/prisma.ts"
+        "src/**/*.ts"
     ]
 }
